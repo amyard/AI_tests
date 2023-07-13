@@ -446,3 +446,4 @@ obj/*
 ##
 wizardLM-7B.ggmlv3.q8_0.bin
 open-llama-3b-q8_0.bin
+ggml-model-f32-q8_0.bin
