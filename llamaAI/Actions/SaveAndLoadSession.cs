@@ -1,5 +1,6 @@
 ﻿using LLama;
 using LLama.Common;
+using llamaAI.Helpers;
 
 namespace llamaAI.Actions;
 
@@ -7,7 +8,8 @@ public class SaveAndLoadSession
 {
     public static void Run(string modelPath)
     {
-        var prompt = File.ReadAllText("Assets/chat-with-bob.txt").Trim();
+        var dataPath = PathHelper.GetPath("Assets", "chat-with-bob.txt");
+        var prompt = File.ReadAllText(dataPath).Trim();
         
         InteractiveExecutor ex = new(new LLamaModel(new ModelParams(modelPath, contextSize: 1024, seed: 1337, gpuLayerCount: 5)));
         ChatSession session = new ChatSession(ex); // The only change is to remove the transform for the output text stream.

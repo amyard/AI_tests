@@ -1,5 +1,6 @@
 ﻿using LLama;
 using LLama.Common;
+using llamaAI.Helpers;
 
 namespace llamaAI.Actions;
 
@@ -7,7 +8,8 @@ public class InstructModeExecute
 {
     public static void Run(string modelPath)
     {
-        var prompt = File.ReadAllText("Assets/dan.txt").Trim();
+        var dataPath = PathHelper.GetPath("Assets", "dan.txt");
+        var prompt = File.ReadAllText(dataPath).Trim();
 
         InstructExecutor ex = new(new LLamaModel(new ModelParams(modelPath, contextSize: 1024)));
 

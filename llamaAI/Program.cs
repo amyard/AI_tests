@@ -2,8 +2,6 @@
 
 using llamaAI;
 
-Console.WriteLine("Hello, World!");
-
 string modelPath = DataConstants.WizardLMPath;
 
 await TaskRunner.Run(modelPath);
