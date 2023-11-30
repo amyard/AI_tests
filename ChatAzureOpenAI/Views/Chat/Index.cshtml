@@ -1,0 +1,26 @@
+﻿<div id="chatBox"></div>
+<input type="text" id="userMessage">
+<button onclick="sendMessage()">Send</button>
+
+<br>
+<h2>Read Data from file</h2>
+
+<div id="chatBox2"></div>
+<input type="text" id="userMessage2">
+<button onclick="sendMessage2()">Send</button>
+
+<script>
+    function sendMessage() {
+        var userMessage = $("#userMessage").val();
+        $.post("/Chat/GetResponse", {userMessage: userMessage}, function (data){
+            $("#chatBox").append("<p>User" + userMessage + "</p>");
+            $("#chatBox").append("<p>Gazton AI" + data.response + "</p>");
+        });
+        
+        var userMessage2 = $("#userMessage2").val();
+        $.post("/Chat/GetResponseFromPdf", {userMessage: userMessage2}, function (data){
+            $("#chatBox2").append("<p>User" + userMessage2 + "</p>");
+            $("#chatBox2").append("<p>Gazton AI" + data.response + "</p>");
+        });
+    }
+</script>
