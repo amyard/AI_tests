@@ -432,3 +432,18 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+
+
+## python
+venv
+venv/*
+.venv
+.venv/*
+myenv
+myenv/*
+.myenv
+.myenv/*
+files
+files/
+files/*
