@@ -4,13 +4,22 @@ using Azure.AI.OpenAI;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Parser;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
+using SharpToken;
+using TiktokenSharp;
 
 string endpoint = "https://bundledocs-develop.openai.azure.com/";
 string key = "41f0c5f50f9348aa8a18f9faab9d3be2";
 string deploymentName = "gpt-35-turbo";
+string encodingName = "cl100k_base";
 
 OpenAIClient azureClient = new(new Uri(endpoint),  new AzureKeyCredential(key));
-string pdfText = GetText(@"C:\LITROOT\Projects\dotNet\AI_here\azure-openai-quickstart\Data\EngineersReport.pdf");
+string pdfText = GetText(@"C:\LITROOT\Projects\dotNet\AI_tests\azure-openai-quickstart\Data\EngineersReport.pdf");
+int sharpTokenEncoding = SharpTokenEncoding(pdfText);
+int tiktokenSharpEncoding = TiktokenSharpEncoding(pdfText);
+Console.WriteLine($"sharpTokenEncoding - {sharpTokenEncoding}. tiktokenSharpEncoding - {tiktokenSharpEncoding}");
+
+// return;
+
 // string prompt = @"""
 //     Provide the most relevant dates from PDF document. Ensure the output is limited to JSON format only. Format the answer in Context | Date only. Format the dates found in ISO8601. Limit the context to one sentence.
 // """;
@@ -59,9 +68,29 @@ var chatCompletionsOptions = new ChatCompletionsOptions() {
 Response<ChatCompletions> response = azureClient.GetChatCompletions(deploymentOrModelName: deploymentName, chatCompletionsOptions);
 var botResponse = response.Value.Choices.First().Message.Content;
 
-int res = 1;
 Console.WriteLine(botResponse);
 
+
+
+// https://github.com/dmitry-brazhenko/SharpToken
+int SharpTokenEncoding(string text)
+{
+    var encoding = GptEncoding.GetEncoding(encodingName);
+    // var encoded = encoding.Encode(text);
+    int encoded = encoding.CountTokens(text);
+    
+    return encoded;
+}
+
+// https://github.com/aiqinxuancai/TiktokenSharp
+int TiktokenSharpEncoding(string text)
+{
+    var encoding = TikToken.GetEncoding(encodingName);
+    // var encoded = encoding.Encode(text);
+    List<int> encoded = encoding.Encode(text);
+    
+    return encoded.Count();
+}
 
 
 string GetText(string pdfPath)
