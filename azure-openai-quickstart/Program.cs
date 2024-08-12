@@ -37,22 +37,38 @@ Console.WriteLine($"sharpTokenEncoding - {sharpTokenEncoding}. tiktokenSharpEnco
 
 // string prompt = @"Provide the most relevant dates from PDF document. Format the answer in Context | Date. Format the dates found in YYYYY-MM-DD. The output result should be valid json format and sorted by extracted date ascending . Also provide text summary. TExt summary should be 10 sentences maximum. the result should be stored in valid json format. {'TextSummarization': %TextSummary%, 'DateExtraction': [{%Date%: %Context%},{%Date%: %Context%},{%Date%: %Context%}]} ";
 
-string prompt = @"Extract and provide the most relevant dates from the PDF document. Format the answer in 'Context' | 'Date'. Format the dates found in 'YYYY-MM-DD'. The output result should be in valid JSON format, with the dates sorted in ascending order. Additionally, provide a text summary of up to 10 sentences. The result should be stored in a valid JSON format like this:
-
-{
-    'TextSummarization': '%TextSummary%',
-    'DateExtraction': [
-        {%Date%: %Context%},
-        ...
-        {%Date%: %Context%}
-    ]
-}";
 
 // CORRECT
 // string prompt = @"Provide the most relevant dates from PDF document. Format the answer in Context | Date. Format the dates found in YYYYY-MM-DD. Sort result by date. The output result should be valid json format.  [{%Date%: %Context%},{%Date%: %Context%},{%Date%: %Context%}]";
 // string prompt = @"Provide the most relevant dates from PDF document. Format the answer in Context | Date. Format the dates found in YYYYY-MM-DD. Sort result by date. The output result should be valid json format.  {'DateExtraction': [{%Date%: %Context%},{%Date%: %Context%},{%Date%: %Context%}]}";
 // string prompt = @"Provide the most relevant dates from PDF document. Format the answer in Context | Date. Format the dates found in YYYYY-MM-DD. The output result should be valid json format and sorted by extracted date ascending.  {'DateExtraction': [{%Date%: %Context%},{%Date%: %Context%},{%Date%: %Context%}]}";
 
+// CORRECT - LAST !!!
+// string prompt = @"Extract and provide the most relevant dates from the PDF document. Format the answer in 'Context' | 'Date'. Format the dates found in 'YYYY-MM-DD'. The output result should be in valid JSON format, with the dates sorted in ascending order. Additionally, provide a text summary of up to 10 sentences. The result should be stored in a valid JSON format like this:
+//
+// {
+//     'TextSummarization': '%TextSummary%',
+//     'DateExtraction': [
+//         {%Date%: %Context%},
+//         ...
+//         {%Date%: %Context%}
+//     ]
+// }";
+
+string prompt = "Extract and provide the most relevant dates from the PDF document. " + 
+                "Format the answer in 'Context' | 'Date'. Format the dates found in 'YYYY-MM-DD'. The output result should be in valid JSON format, with the dates sorted in ascending order." +
+                "Additionally, provide a text summary of up to 10 sentences. The result should be stored in a valid JSON format like this: " +
+                "\n" +
+                """
+                {
+                    'TextSummarization': '%TextSummary%',
+                    'DateExtraction': [
+                        {%Date%: %Context%},
+                        ...
+                        {%Date%: %Context%}
+                    ]
+                }
+                """;
 
 
 var chatCompletionsOptions = new ChatCompletionsOptions() {
