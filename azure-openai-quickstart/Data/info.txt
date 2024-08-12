@@ -1,0 +1,2 @@
+﻿https://jsonschema.net/app/schemas/480971   -  generate json schema from json
+https://www.jsonschemavalidator.net/    -   check if json schema is valid
