@@ -1,0 +1,77 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/bundledocs.ai.schema.json",
+  "title": "Bundledocs.AI",
+  "description": "Services for Bundledocs.AI",
+  "default": {},
+  "properties": {
+    "TextSummarization": {
+      "description": "the summarization of text",
+      "default": "",
+      "type": "string",
+      "title": "The TextSummarization Schema",
+      "examples": [
+        "The document is a letter from Michael Jenkins, a consulting engineer, to Messrs. Moriarty \u0026 Partners, solicitors, regarding a road traffic accident that occurred on March 25, 2000, at Kilmore Road, Tagoat, Co. Wexford. The letter contains details of the accident, including measurements, photographs, and comments on the incident. The accident occurred at approximately 6:00 a.m. and both vehicles were probably travelling at a speed somewhat greater than that which would be regarded as prudent. Sunrise would have occurred on that particular date at approximately 6:20 a.m. which suggests that daylight would have begun to occur from approximately 5:50 a.m. and therefore it is likely that there was some small measure of daylight available when this incident occurred."
+      ]
+    },
+    "DateExtraction": {
+      "description": "extracted date with context for each date",
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Date": {
+            "title": "The Date Schema",
+            "type": "string",
+            "examples": [
+              "2000-03-25",
+              "2000-08-24"
+            ]
+          },
+          "Context": {
+            "type": "string",
+            "title": "The Context Schema",
+            "examples": [
+              "Road Traffic Accident at Kilmore Road, Tagoat, Co. Wexford at approximately 6 a.m. on Saturday the 25 of March 2000",
+              "Instructions from Messrs. Moriarty \u0026 Partners, Solicitors, Wexford"
+            ]
+          }
+        },
+        "required": [
+          "Date",
+          "Context"
+        ],
+        "examples": [{
+          "Date": "2000-03-25",
+          "Context": "Road Traffic Accident at Kilmore Road, Tagoat, Co. Wexford at approximately 6 a.m. on Saturday the 2511 of March 2000"
+        },
+        {
+          "Date": "2000-08-24",
+          "Context": "Instructions from Messrs. Moriarty \u0026 Partners, Solicitors, Wexford"
+        }]
+      },
+      "examples": [
+        [{
+          "Date": "2000-03-25",
+          "Context": "Road Traffic Accident at Kilmore Road, Tagoat, Co. Wexford at approximately 6 a.m. on Saturday the 2511 of March 2000"
+        },
+        {
+          "Date": "2000-08-24",
+          "Context": "Instructions from Messrs. Moriarty \u0026 Partners, Solicitors, Wexford"
+        }]
+      ]
+    }
+  },
+  "examples": [{
+    "TextSummarization": "The document is a letter from Michael Jenkins, a consulting engineer, to Messrs. Moriarty \u0026 Partners, solicitors, regarding a road traffic accident that occurred on March 25, 2000, at Kilmore Road, Tagoat, Co. Wexford. The letter contains details of the accident, including measurements, photographs, and comments on the incident. The accident occurred at approximately 6:00 a.m. and both vehicles were probably travelling at a speed somewhat greater than that which would be regarded as prudent. Sunrise would have occurred on that particular date at approximately 6:20 a.m. which suggests that daylight would have begun to occur from approximately 5:50 a.m. and therefore it is likely that there was some small measure of daylight available when this incident occurred.",
+    "DateExtraction": [{
+      "Date": "2000-03-25",
+      "Context": "Road Traffic Accident at Kilmore Road, Tagoat, Co. Wexford at approximately 6 a.m. on Saturday the 2511 of March 2000"
+    },
+    {
+      "Date": "2000-08-24",
+      "Context": "Instructions from Messrs. Moriarty \u0026 Partners, Solicitors, Wexford"
+    }]
+  }]
+}
