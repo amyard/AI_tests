@@ -8,7 +8,7 @@
 // using TiktokenSharp;
 //
 // string endpoint = "https://bundledocs-develop.openai.azure.com/";
-// string key = "41f0c5f50f9348aa8a18f9faab9d3be2";
+// string key = "****";
 // string deploymentName = "gpt-35-turbo";
 // string encodingName = "cl100k_base";
 //

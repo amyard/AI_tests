@@ -9,7 +9,7 @@
 // {
 //     // TODO ---> we need version 2 of Azure.AI.OpenAI
 //     string endpoint = "https://bundledocs-develop.openai.azure.com/";
-//     string key = "41f0c5f50f9348aa8a18f9faab9d3be2";
+//     string key = "****";
 //     string deploymentName = "gpt-35-turbo";
 //
 //     AzureOpenAIClient azureClient = new(new Uri(endpoint),  new AzureKeyCredential(key));
